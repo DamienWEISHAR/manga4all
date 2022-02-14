@@ -1,10 +1,5 @@
 <?php 
 
-require_once "./models/MangaManager.class.php";
-$mangaManager = new MangaManager; //pas de constructeur donc pas de ();
-$mangaManager->chargementMangas();
-
-
 ob_start();
 ?>
 
@@ -23,8 +18,8 @@ ob_start();
     <!-- permet d'afficher les données en parcourant le tableau $mangas -->
     <?php 
     //récupération du tableau des mangas dans une variable $mangas pour faciliter la lisibilité
-    $mangas = $mangaManager->getMangas();
-    for($i=0; $i < count($mangaManager->getMangas()); $i++) : ?>
+    
+    for($i=0; $i < count($mangas); $i++) : ?>
 
     <tr class="tab-titre">
         <td class="tab-ligne"><img class="img-manga" src="public/images/<?= $mangas[$i]->getImage(); ?>" alt=""></td>

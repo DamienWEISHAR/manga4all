@@ -1,7 +1,15 @@
-/* Police d'écriture personnalisée */
+/***********************************
+ Police d'écriture personnalisée 
+ ***********************************/
 @import url('https://fonts.googleapis.com/css2?family=Syne+Tactile&display=swap');
 /* font-family: 'Syne Tactile', cursive; */
 
+@import url('https://fonts.googleapis.com/css2?family=Sriracha&family=Syne+Tactile&display=swap');
+
+/*font-family: 'Sriracha', cursive;*/
+
+@import url('https://fonts.googleapis.com/css2?family=Rock+Salt&family=Sriracha&family=Syne+Tactile&display=swap');
+/* font-family: 'Rock Salt', cursive; */
 /***********************************
         VARIABLES
 ***********************************/
@@ -39,7 +47,7 @@
 .nav-li-a{
     color:var(--orange);
     font-size:2.5rem;
-    font-family: 'Syne Tactile', cursive;
+    font-family: 'Rock Salt', cursive;
 }
 
 /************************************
@@ -47,7 +55,7 @@
 ***********************************/
 h1{
     color:var(--blue);
-    font-family: 'Syne Tactile', cursive;
+    font-family: 'Sriracha', cursive;
     text-align: center;
 }
 

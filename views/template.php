@@ -12,13 +12,13 @@
         <div>
             <ul class="nav-ul">
                 <li class="nav-li">
-                    <a class="nav-li-a" href="index.php">Accueil</a>
+                    <a class="nav-li-a" href="accueil">Accueil</a>
                 </li>
                 <li class="nav-li">
-                    <a class="nav-li-a" href="mangas.php">Mes mangas</a>
+                    <a class="nav-li-a" href="mangas">Mes mangas</a>
                 </li>
                 <li class="nav-li">
-                    <a class="nav-li-a" href="#">Inscription</a>
+                    <a class="nav-li-a" href="inscription">Inscription</a>
                 </li>
                 <li class="nav-li">
                     <a class="nav-li-a" href="#">Connexion</a>
