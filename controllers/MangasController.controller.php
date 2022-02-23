@@ -36,6 +36,15 @@ class MangasController{
         $mangas = $this->mangaManager->getMangas();
         require './views/mangas.view.php';
     }
+
+    public function afficherUnManga($id){
+        $manga = $this->mangaManager->getMangaById($id);
+        require "./views/afficherManga.view.php";
+    }
+
+    public function ajouterManga(){
+        require "./views/ajoutManga.view.php";
+    }
 }
 
 

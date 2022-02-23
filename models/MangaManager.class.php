@@ -41,10 +41,18 @@ class MangaManager extends Connexion{
 
         //on veut générer un objet de type $manga, sous forme de tableau associatif
         foreach($mesMangas as $manga){
-            $m = new Manga($manga['id'],$manga['edition'],$manga['titre'],$manga['image']);
+            $m = new Manga($manga['id'],$manga['titre'],$manga['edition'],$manga['image']);
             $this->ajoutManga($m);
         }
+    }
 
+    //pour récupérer un manga par l'id
+    public function getMangaById($id){
+        for($i=0; $i < count($this->mangas); $i++){
+            if($this->mangas[$i]->getId()===$id){
+                return $this->mangas[$i];
+            }
+        }
     }
 }
  

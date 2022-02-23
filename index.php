@@ -8,28 +8,45 @@ define("URL", str_replace("index.php", "", (isset($_SERVER['HTTPS']) ? "https" :
 
 
 
-
-if (empty($_GET['page'])){
-    require './views/accueil.view.php';
-} else {
-    /* J'explose le contenu de GET page sous forme de tableau
-    Chaque sous URL correspondra à un index du tableau
-    FILTER_SANITIZE_URL permet de supprimer tous les caractères sauf les lettres/chiffres/certains caractères spéciaux
-    et permet d'être un peu plus sécurisé sur ce qui est envoyé à travers l'url */
-    $url = explode("/", filter_var($_GET['page']), FILTER_SANITIZE_URL);
-    switch($url[0]){
-        case "accueil":
-            require './views/accueil.view.php';
-        break;
-        case "mangas":
-            $mangaController->afficherMangas();
-            
-        break;
-        case "inscription":
-            require './views/inscription.view.php';
+try{
+    if (empty($_GET['page'])){
+        require './views/accueil.view.php';
+    } else {
+        /* J'explose le contenu de GET page sous forme de tableau
+        Chaque sous URL correspondra à un index du tableau
+        FILTER_SANITIZE_URL permet de supprimer tous les caractères sauf les lettres/chiffres/certains caractères spéciaux
+        et permet d'être un peu plus sécurisé sur ce qui est envoyé à travers l'url */
+        $url = explode("/", filter_var($_GET['page']), FILTER_SANITIZE_URL);
+        switch($url[0]){
+            case "accueil":
+                require './views/accueil.view.php';
+            break;
+            case "mangas":
+                if(empty($url[1])){
+                    $mangaController->afficherMangas();
+                } else if ($url[1]==="l"){
+                    $mangaController->afficherUnManga($url[2]);
+                }else if ($url[1]==="a"){
+                    $mangaController->ajouterManga();
+                }else if ($url[1]==="m"){
+                    echo "modification d'un manga";
+                }else if ($url[1]==="s"){
+                    echo "suppression d'un manga";
+                } else if ($url[1]==="av"){
+                    echo "validation d'ajout d'un manga";
+                } else {
+                    throw new Exception("La page n'existe pas");
+                }    
+            break;
+            case "inscription":
+                require './views/inscription.view.php';
+            break;
+            default: throw new Exception("La page n'existe pas");
+        }
     }
+}catch(Exception $e){
+   echo $e->getMessage();
 }
-
 
 
 // require_once './controler_series.php';
