@@ -8,7 +8,7 @@ ob_start();//permet de mettre en temporisation du code qui sera utilisé plus ta
     </div>
     <div class="col-6">
         <h3>Informations</h3>
-        <p>Titre:<?=$manga->getTitre();?></p>
+        <p>Titre: <?=$manga->getTitre();?></p>
         <p>Edition: <?=$manga->getEdition();?></p>
     </div>
 

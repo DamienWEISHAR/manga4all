@@ -27,7 +27,7 @@ class MangaManager extends Connexion{
           METHODES
     ***********************/
 
-    //pour ajotuer un manga
+    //pour ajouter un manga au tableau
     public function ajoutManga($manga){
         $this->mangas[] = $manga;
     }
@@ -54,6 +54,57 @@ class MangaManager extends Connexion{
             }
         }
     }
+
+    //ajout d'un manga à la BDD par un user
+    public function ajoutMangaBd($titre, $edition, $image){
+        $req = " INSERT INTO mangas (titre, edition, image) VALUES (:titre, :edition, :image)";
+        $stmt = $this->getBdd()->prepare($req);
+        $stmt->bindValue(":titre", $titre, PDO::PARAM_STR);
+        $stmt->bindValue(":edition",$edition, PDO::PARAM_STR);
+        $stmt->bindValue(":image", $image, PDO::PARAM_STR);
+        $resultat = $stmt->execute();
+        $stmt->closeCursor(); 
+
+    
+       if($resultat >0){
+        $manga = new Manga($this->getBdd()->lastInsertId(), $titre, $edition,$image);
+        $this->ajoutManga($manga);
+       }
+    }
+
+
+    public function suppressionMangaBD($id){
+        $req ='DELETE FROM mangas WHERE id = :idManga';
+        $stmt = $this->getBdd()->prepare($req);
+        $stmt->bindValue("idManga", $id, PDO ::PARAM_INT);
+        $resultat = $stmt->execute();
+        $stmt->closeCursor();
+
+        if($resultat >0){
+            $manga = $this->getMangaById($id);
+            unset($manga);
+        }
+    }
+
+    public function modificationMangaBD($id,$titre,$edition,$image){
+        $req= "UPDATE mangas SET titre = :titre, edition = :edition, image = :image WHERE id = :id";
+        $stmt = $this->getBdd()->prepare($req);
+        $stmt->bindValue(":id", $id, PDO ::PARAM_INT);
+        $stmt->bindValue(":titre", $titre, PDO ::PARAM_STR);
+        $stmt->bindValue(":edition", $edition, PDO ::PARAM_STR);
+        $stmt->bindValue(":image", $image, PDO ::PARAM_STR);
+        $resultat = $stmt->execute();
+        $stmt->closeCursor();
+
+        if($resultat >0){
+            $this->getMangaById($id)->setTitre($titre);
+            $this->getMangaById($id)->setEdition($edition);
+            $this->getMangaById($id)->setImage($image);
+
+
+        }
+    }
+
 }
  
 

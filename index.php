@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 
 require_once './controllers/MangasController.controller.php';
 $mangaController = new MangasController;//pas de constructeur donc pas de ();
@@ -28,15 +30,17 @@ try{
                     $mangaController->afficherUnManga($url[2]);
                 }else if ($url[1]==="a"){
                     $mangaController->ajouterManga();
+                }else if ($url[1]==="av"){
+                    $mangaController->ajoutMangaValidation();
                 }else if ($url[1]==="m"){
-                    echo "modification d'un manga";
-                }else if ($url[1]==="s"){
-                    echo "suppression d'un manga";
-                } else if ($url[1]==="av"){
-                    echo "validation d'ajout d'un manga";
+                    $mangaController->modificationManga($url[2]);
+                }  else if ($url[1]==="mv"){
+                    $mangaController->modificationMangaValidation();
+                } else if ($url[1]==="s"){
+                    $mangaController->suppressionManga($url[2]);
                 } else {
                     throw new Exception("La page n'existe pas");
-                }    
+                }      
             break;
             case "inscription":
                 require './views/inscription.view.php';

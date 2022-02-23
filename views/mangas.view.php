@@ -1,7 +1,13 @@
 <?php 
 
 ob_start();//permet de mettre en temporisation du code qui sera utilisé plus tard
+if (!empty($_SESSION['alert'])) :
+
 ?>
+<div class="alert alert-<?= $_SESSION['alert']['type']?>" role="alert">
+    <?= $_SESSION['alert']['msg']?>
+</div>
+<?php endif; ?>
 
 <div>
     <button type="button" class="align-middle btn btn-success"> <a class="text-white" href="<?=URL?>mangas/a">Ajouter</a></button>
@@ -25,8 +31,13 @@ ob_start();//permet de mettre en temporisation du code qui sera utilisé plus ta
         <td class="align-middle"><img src="public/images/<?= $mangas[$i]->getImage(); ?>" alt="" width="150vw"></td>
         <td class="align-middle"><a href="<?=URL?>mangas/l/<?= $mangas[$i]->getId(); ?>"><?= $mangas[$i]->getTitre(); ?></a></td>
         <td class="align-middle"><?= $mangas[$i]->getEdition(); ?></td>
-        <td class="align-middle"><button type="button" class="btn btn-warning"><a class="text-white" href="">Modifier</a></button></td>
-        <td class="align-middle"><button type="button" class="btn btn-danger"><a class="text-white" href="">Supprimer</a></button></td>
+        <td class="align-middle"><button type="button" class="btn btn-warning"><a class="text-white" href="<?= URL ?>/mangas/m/<?= $mangas[$i]->getId(); ?>">Modifier</a></button></td>
+        <td class="align-middle">
+            <form method="POST" action="<?=URL?>mangas/s/<?=$mangas[$i]->getId();?>" onSubmit="return confirm('Voulez-vous vraiment supprimer ce manga?');">
+                <button class="btn btn-danger text-white" type="submit">Supprimer</button>
+            </form>
+            
+        </td>
     </tr>
     <?php endfor; ?>
 </table>
