@@ -42,7 +42,8 @@ class MangasController{
 
     public function afficherUnManga($id){
         $manga = $this->mangaManager->getMangaById($id);
-        require "./views/afficherManga.view.php";
+        require "views/afficherManga.view.php";
+        
     }
 
 
@@ -101,7 +102,7 @@ class MangasController{
             throw new Exception ("Le fichier existe déjà!");
         }
         //pour le poids de l'image
-        if($file['size'] > 50000){
+        if($file['size'] > 500000){
             throw new Exception("Fichier trop volumineux!");
         }
         //pour vérifier que l'ajout de fichier a bien été effectué

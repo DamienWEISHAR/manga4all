@@ -49,7 +49,7 @@ class MangaManager extends Connexion{
     //pour récupérer un manga par l'id
     public function getMangaById($id){
         for($i=0; $i < count($this->mangas); $i++){
-            if($this->mangas[$i]->getId()===$id){
+            if($this->mangas[$i]->getId() == $id){
                 return $this->mangas[$i];
             }
         }
@@ -76,7 +76,7 @@ class MangaManager extends Connexion{
     public function suppressionMangaBD($id){
         $req ='DELETE FROM mangas WHERE id = :idManga';
         $stmt = $this->getBdd()->prepare($req);
-        $stmt->bindValue("idManga", $id, PDO ::PARAM_INT);
+        $stmt->bindValue(":idManga", $id, PDO ::PARAM_INT);
         $resultat = $stmt->execute();
         $stmt->closeCursor();
 
