@@ -1,14 +1,6 @@
 <?php 
 ob_start();//permet de mettre en temporisation du code qui sera utilisé plus tard
-if (!empty($_SESSION['alert'])) :
-
 ?>
-<div class="alert alert-<?= $_SESSION['alert']['type']?>" role="alert">
-    <?= $_SESSION['alert']['msg']?>
-</div>
-<?php 
-unset($_SESSION['alert']);
-endif; ?>
 
 <div>
     <button type="button" class="align-middle btn btn-success"> <a class="text-white" href="<?=URL?>mangas/a">Ajouter</a></button>

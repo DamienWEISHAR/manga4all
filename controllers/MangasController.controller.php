@@ -35,7 +35,7 @@ class MangasController{
         //récupération de tous les livres, dispo dans la variable $mangas
         $mangas = $this->mangaManager->getMangas();
         require './views/mangas.view.php';
-        unset($_SESSION['alert']);
+       
     }
 
 
@@ -59,8 +59,8 @@ class MangasController{
         $repertoire = "public/images/";
         $nomImageAjoute= $this->ajoutImage($file,$repertoire);
 
-        //rajout du livre en bdd
-        $this->mangaManager->ajoutMangaBd($_POST['titre'],$_POST['edition'],$nomImageAjoute);
+        //rajout du livre en bdd + SECURISATION
+        $this->mangaManager->ajoutMangaBd(htmlspecialchars(strip_tags($_POST['titre'])),htmlspecialchars(strip_tags($_POST['edition'])),$nomImageAjoute);
 
         $_SESSION['alert'] = [
             "type" => "success",
@@ -139,8 +139,8 @@ class MangasController{
     }
 
     public function modificationMangaValidation(){
-        //récupération de l'image
-        $imageActuelle = $this->mangaManager->getMangaById($_POST['identifiant'])->getImage();
+        //récupération de l'image + SECURISATION
+        $imageActuelle = $this->mangaManager->getMangaById(htmlspecialchars(strip_tags($_POST['identifiant'])))->getImage();
         $file = $_FILES['image'];
         //si modification
         if($file['size'] > 0){
@@ -150,7 +150,7 @@ class MangasController{
         } else {
             $nomImageToAdd = $imageActuelle;
         }
-        $this->mangaManager->modificationMangaBD($_POST['identifiant'],$_POST['titre'],$_POST['edition'],$nomImageToAdd);
+        $this->mangaManager->modificationMangaBD(htmlspecialchars(strip_tags($_POST['identifiant'])),htmlspecialchars(strip_tags($_POST['titre'])),htmlspecialchars(strip_tags($_POST['edition'])),$nomImageToAdd);
 
         $_SESSION['alert'] = [
             "type" => "success",
