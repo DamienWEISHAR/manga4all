@@ -3,16 +3,16 @@ ob_start();  //permet de mettre en temporisation du code qui sera utilisé plus 
 ?>
 <!-- enctype permet de récupérer les images uploadées sinon ça ne marche pas -->
 <form method="POST" action="<?=URL?>mangas" enctype="multipart/form-data">
-  <div class="form-group text-center">
-    <label  for="pseudo">Pseudo </label>
+  <div class="form-group text-center col-sm-8 offset-sm-2">
+    <label for="pseudo">Pseudo </label>
     <input type="texte" class="form-control" id="pseudo" name="pseudo">
   </div>
-  <div class="form-group text-center">
+  <div class="form-group text-center col-sm-8 offset-sm-2">
     <label for="password">Password</label>
     <input type="text" class="form-control" id="password" name="password">
   </div>
   <br>
-  <button type="submit" class="btn btn-primary">Se connecter</button>
+  <button type="submit" class="btn btn-primary col-sm-2 offset-sm-5">Se connecter</button>
 </form> 
 <?php
 
