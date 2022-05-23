@@ -62,10 +62,6 @@ class MangasController{
         //rajout du livre en bdd + SECURISATION
         $this->mangaManager->ajoutMangaBd(htmlspecialchars(strip_tags($_POST['titre'])),htmlspecialchars(strip_tags($_POST['edition'])),$nomImageAjoute);
 
-        $_SESSION['alert'] = [
-            "type" => "success",
-            "msg" => "Ajout réalisé!"
-        ];
 
         header ('Location: '. URL . "mangas");
     }
@@ -122,10 +118,6 @@ class MangasController{
         unlink("public/images/".$nomImage);
         $this->mangaManager->suppressionMangaBD($id);
 
-        $_SESSION['alert'] = [
-            "type" => "success",
-            "msg" => "Suppression réalisée!"
-        ];
 
         header('Location:'.URL."mangas");
     }
@@ -152,10 +144,7 @@ class MangasController{
         }
         $this->mangaManager->modificationMangaBD(htmlspecialchars(strip_tags($_POST['identifiant'])),htmlspecialchars(strip_tags($_POST['titre'])),htmlspecialchars(strip_tags($_POST['edition'])),$nomImageToAdd);
 
-        $_SESSION['alert'] = [
-            "type" => "success",
-            "msg" => "Modification réalisée!"
-        ];
+       
 
         header('Location: '. URL . "mangas");
     }
